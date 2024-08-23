@@ -6,13 +6,15 @@ import {
   StyleSheet,
   Pressable,
   TouchableOpacity,
+  GestureHandlerRootView,
   useWindowDimensions,
 } from "react-native";
-import "react-native-gesture-handler";
+// import "react-native-gesture-handler";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { useRef, useState } from "react";
+import SharedTodoModalContent from "./SharedTodoModalContent";
+import TodoModalContent from "./TodoModalContent";
 // import TodoModalContent from "./TodoModalContent";
-// import SharedTodoModalContent from "./SharedTodoModalContent";
 
 function CheckMark({ id, completed, toggleTodo }) {
   async function toggle() {
@@ -62,7 +64,7 @@ export default function Task({
   const bottomSheetModalRef = useRef(null);
   const sharedBottomSheetRef = useRef(null);
   const snapPoints = ["25%", "48%", "75%"];
-  const snapPointsShared = ["40%"];
+  const snapPointsShared = ["25%", "40%"];
 
   function handlePresentModal() {
     bottomSheetModalRef.current?.present();
@@ -123,22 +125,22 @@ export default function Task({
         backgroundStyle={{ borderRadius: 50, borderWidth: 4 }}
       >
         <Text style={styles.text_sup}>ESTA ES UNA PRUEBA EN EL BSM 1</Text>
-        {/* <SharedTodoModalContent
+        <SharedTodoModalContent
           id={id}
           title={title}
           shared_with_id={shared_with_id}
           completed={completed}
-        /> */}
+        />
       </BottomSheetModal>
-
+       
       <BottomSheetModal
         ref={bottomSheetModalRef}
         index={2}
         snapPoints={snapPoints}
         backgroundStyle={{ borderRadius: 50, borderWidth: 4 }}
       >
-        <Text style={styles.text_sup}>ESTA ES UNA PRUEBA EN EL BSM 2</Text>
-        {/* <TodoModalContent id={id} title={title} /> */}
+        {/* <Text style={styles.text_sup}>ESTA ES UNA PRUEBA EN EL BSM 2</Text> */}
+        <TodoModalContent id={id} title={title} />
       </BottomSheetModal>
     </TouchableOpacity>
   );
