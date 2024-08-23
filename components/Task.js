@@ -75,7 +75,8 @@ export default function Task({
   }
 
   async function deleteTodo() {
-    const response = await fetch("http://192.168.1.2/todos/${id}", {
+    console.log("Solicitud de DELETE del id: " + id);
+    const response = await fetch(`http://192.168.1.2:8080/todos/${id}`, {
       method: "DELETE",
     });
     clearTodo(id);
@@ -124,7 +125,7 @@ export default function Task({
         snapPoints={snapPointsShared}
         backgroundStyle={{ borderRadius: 50, borderWidth: 4 }}
       >
-        <Text style={styles.text_sup}>ESTA ES UNA PRUEBA EN EL BSM 1</Text>
+        {/* <Text style={{color: "blue", fontWeight: "normal", margin: "auto"}}>ALMA TRNIDAD LUCHINI</Text> */}
         <SharedTodoModalContent
           id={id}
           title={title}
@@ -178,13 +179,13 @@ const styles = StyleSheet.create({
   deleteButton: {
     position: "absolute",
     right: 0,
-    top: -6,
-    width: 20,
-    height: 20,
+    top: -15,
+    width: 30,
+    height: 30,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#ef4444",
-    borderRadius: 10,
+    borderRadius: 15,
   },
   contentContainer: {
     flex: 1,

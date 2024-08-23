@@ -9,6 +9,7 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   Pressable,
+  Platform,
   Animated,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
@@ -47,7 +48,7 @@ export default function InputTask({ todos, setTodos }) {
     } else {
       const response = await fetch("http://192.168.1.2:8080/todos", {
         headers: {
-        //   "x-api-key": "abcdef123456",
+          //   "x-api-key": "abcdef123456",
           "Content-Type": "application/json",
         },
         method: "POST",
@@ -79,52 +80,44 @@ export default function InputTask({ todos, setTodos }) {
 
   return (
     <KeyboardAvoidingView
-    //   behavior={Platform.OS === "ios" ? "padding" : "height"}
-        behavior="height"
+      // behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS === "ios" ? "padding" : null}
+      style={styles.container}
     >
-      <View style={styles.container}>
-        {showEmojies && (
-          <Animated.View
-            style={[
-              styles.emojiesContainer,
-              {
-                opacity: fadeAnim,
-              },
-            ]}
-          >
-            <RenderEmoji emoji="✅" />
-            <RenderEmoji emoji="🚨" />
-            <RenderEmoji emoji="📝" />
-            <RenderEmoji emoji="🎁" />
-            <RenderEmoji emoji="🛒" />
-            <RenderEmoji emoji="🎉" />
-            <RenderEmoji emoji="🏃🏻‍♂️" />
-          </Animated.View>
-        )}
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.containerTextInput}
-            placeholder="Write a new task"
-            scrollEnabled={true}
-            onChangeText={setMessageBody}
-            defaultValue={messageBody}
-          />
-          <Pressable onPress={handleSubmit}>
-            <AntDesign
-              name="checkcircle"
-              size={40}
-              color={messageBody ? "black" : "#00000050"}
-              style={{ paddingLeft: 5 }}
-            />
-          </Pressable>
-          {/* <MaterialCommunityIcons
-            name="arrow-up-circle"
+      {showEmojies && (
+        <Animated.View
+          style={[
+            styles.emojiesContainer,
+            {
+              opacity: fadeAnim,
+            },
+          ]}
+        >
+          <RenderEmoji emoji="✅" />
+          <RenderEmoji emoji="🚨" />
+          <RenderEmoji emoji="📝" />
+          <RenderEmoji emoji="🎁" />
+          <RenderEmoji emoji="🛒" />
+          <RenderEmoji emoji="🎉" />
+          <RenderEmoji emoji="🏃🏻‍♂️" />
+        </Animated.View>
+      )}
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.containerTextInput}
+          placeholder="Write a new task"
+          scrollEnabled={true}
+          onChangeText={setMessageBody}
+          defaultValue={messageBody}
+        />
+        <Pressable onPress={handleSubmit}>
+          <AntDesign
+            name="checkcircle"
             size={40}
             color={messageBody ? "black" : "#00000050"}
             style={{ paddingLeft: 5 }}
-            onPress={handleSubmit}
-          /> */}
-        </View>
+          />
+        </Pressable>
       </View>
     </KeyboardAvoidingView>
   );

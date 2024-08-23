@@ -27,6 +27,8 @@ import { StatusBar } from "expo-status-bar";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import InputTask from "./components/InputTask";
 
+// Upgrade dependencies: npx expo install --fix
+
 // TO RUN: NPX EXPO START
 
 export default function App() {
