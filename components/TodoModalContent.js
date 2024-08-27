@@ -25,19 +25,19 @@ export default function TodoModalContent({ id, title }) {
     setEmail("");
     setFocus(false);
     Alert.alert(
-      "Congratulations 🎉",
-      `You successfully shared ${title} with ${email}`,
-      [{ text: "Okay" }]
+      "Felicitaciones 🎉",
+      `Has compartido exitosamente ${title} con ${email}`,
+      [{ text: "Aceptar" }]
     );
   };
 
   return (
     <View style={styles.contentContainer}>
-      <Text style={[styles.title, { marginBottom: 20 }]}>Share your task</Text>
+      <Text style={[styles.title, { marginBottom: 20 }]}>Compartí tu tarea</Text>
       <Text style={[styles.title, { marginBottom: 20 }]}>"{title}"</Text>
       <Text style={styles.description}>
-        Enter the email of the user you want to share your task with. Share a
-        task with someone and stay in sinc with your goals everyday.
+        Ingresa el email de el usuario con quien vas a compartir la tarea. 
+        Comparte una tarea con alguien y sincroniza tus objetivos a diario.
       </Text>
       <TextInput
         value={email}
@@ -49,11 +49,11 @@ export default function TodoModalContent({ id, title }) {
           styles.input,
           focus && { borderWidth: 3, borderColor: "black" },
         ]}
-        placeholder="Enter your contact email"
+        placeholder="Ingrese el email del contacto"
       />
       <Button
         onPress={handleSubmit}
-        title="Share"
+        title="Compartir"
         disabled={email.length === 0}
       />
     </View>

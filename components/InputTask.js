@@ -18,9 +18,12 @@ export default function InputTask({ todos, setTodos }) {
   const [showEmojies, setShowEmojies] = useState(false);
   const [messageBody, setMessageBody] = useState("");
   const [fadeAnim] = useState(new Animated.Value(0.1));
+  const showEvent = Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow";//Corrects the emojies bar dont apears on android. 
+  const hideEvent = Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide";//
 
   useEffect(() => {
-    const showSubscription = Keyboard.addListener("keyboardWillShow", () => {
+    const showSubscription = Keyboard.addListener(showEvent, () => {
+      // console.log("showing");
       setShowEmojies(true);
       Animated.timing(fadeAnim, {
         toValue: 1,
@@ -28,7 +31,8 @@ export default function InputTask({ todos, setTodos }) {
         useNativeDriver: true,
       }).start();
     });
-    const hideSubscription = Keyboard.addListener("keyboardWillHide", () => {
+    const hideSubscription = Keyboard.addListener(hideEvent, () => {
+      // console.log("hiding");
       setShowEmojies(false);
       Animated.timing(fadeAnim, {
         toValue: 0,
@@ -80,8 +84,7 @@ export default function InputTask({ todos, setTodos }) {
 
   return (
     <KeyboardAvoidingView
-      // behavior={Platform.OS === "ios" ? "padding" : "height"}
-      behavior={Platform.OS === "ios" ? "padding" : null}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
       {showEmojies && (
@@ -105,7 +108,7 @@ export default function InputTask({ todos, setTodos }) {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.containerTextInput}
-          placeholder="Write a new task"
+          placeholder="Escribe una nueva tarea:"
           scrollEnabled={true}
           onChangeText={setMessageBody}
           defaultValue={messageBody}

@@ -6,8 +6,8 @@ import {
   StyleSheet,
   Pressable,
   TouchableOpacity,
-  GestureHandlerRootView,
-  useWindowDimensions,
+  // GestureHandlerRootView,
+  // useWindowDimensions,
 } from "react-native";
 // import "react-native-gesture-handler";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";

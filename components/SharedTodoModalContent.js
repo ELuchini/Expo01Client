@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
-import { Keyboard, View, Text, StyleSheet, Button, Alert } from "react-native";
+import { 
+          // Keyboard,
+          View,
+          Text,
+          StyleSheet,
+          // Button,
+          //  Alert
+       } from "react-native";
 
 export default function SharedTodoModalContent({
   id,
   title,
-  shared_with_id,
+  // shared_with_id,
   completed,
 }) {
   const [author, setAuthor] = useState({});
@@ -30,9 +37,9 @@ export default function SharedTodoModalContent({
 
   return (
     <View style={styles.contentContainer}>
-      <Text style={[styles.title, { marginBottom: 20 }]}>Shared Tasks</Text>
+      <Text style={[styles.title, { marginBottom: 20 }]}>Tarea Compartida</Text>
       <Text style={[styles.title, { marginBottom: 20 }]}>"{title}"</Text>
-      <Text style={[styles.title]}>Status</Text>
+      <Text style={[styles.title]}>Estado</Text>
       <View
         style={[
           styles.status,
@@ -40,10 +47,10 @@ export default function SharedTodoModalContent({
         ]}
       >
         <Text style={[styles.title, { color: "white" }]}>
-          {completed === 1 ? "Completed" : "Incompleted"}
+          {completed === 1 ? "Completada" : "Incompleta"}
         </Text>
       </View>
-      <Text style={[styles.description]}>PARTICIPANTS</Text>
+      <Text style={[styles.description]}>USUARIOS CON ACCESO</Text>
       <View style={{ flexDirection: "row" }}>
         <View style={styles.participant}>
           <Text style={[styles.description, { color: "white" }]}>

@@ -24,7 +24,7 @@ import { StyleSheet, Text, FlatList, SafeAreaView } from "react-native";
 import Task from "./components/Task";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { StatusBar } from "expo-status-bar";
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import InputTask from "./components/InputTask";
 
 // Upgrade dependencies: npx expo install --fix
@@ -69,9 +69,6 @@ export default function App() {
     <GestureHandlerRootView>
       <BottomSheetModalProvider>
         <SafeAreaView style={styles.container}>
-          {/*EL  QUE FUNCIONÓ keyExtractor={(todo, index) => `${todo.id}-${index}`}*/}
-
-          {/* <Text style={styles.text_sup}>{JSON.stringify(todos)}</Text> */}
           <FlatList
             data={todos}
             keyExtractor={(todo) => {
@@ -86,7 +83,7 @@ export default function App() {
           />
           <InputTask todos={todos} setTodos={setTodos} />
         </SafeAreaView>
-        <StatusBar style="auto"/>
+        <StatusBar style="auto" />
       </BottomSheetModalProvider>
     </GestureHandlerRootView>
   );
